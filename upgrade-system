@@ -85,24 +85,29 @@ else
 	dpkg --configure -a
 	rm  /var/cache/apt/archives/*
 	rm  /var/lib/apt/lists/*
-        echo "${Color_Off}>\t ${On_Blue}Cleaning ...${Color_Off}\t\t\t\t\t\t\t\t\t<${Yellow}";
+    echo " ";
+    echo "${Color_Off}>\t ${On_Blue}Cleaning ...${Color_Off}\t\t\t\t\t\t\t\t\t<${Yellow}";
 	apt autoclean -y
 	echo "${Green}${I_OK}\t Cleaned. \t\t\t\t\t\t\t\t\t${I_OK}";
-        echo "${Color_Off}>\t ${On_Blue}Updating source.list${Color_Off}\t\t\t\t\t\t\t\t<${Yellow}";
+    echo " ";
+    echo "${Color_Off}>\t ${On_Blue}Updating source.list${Color_Off}\t\t\t\t\t\t\t\t<${Yellow}";
 	apt update -y
 	echo "${Green}${I_OK}\t source.list\t\t\t\t\t\t\t\t\t${I_OK}";
-	echo "";
+	echo " ";
 	apt list --upgradable -a
-	echo "";
-        echo "${Color_Off}>\t ${On_Blue}Installing Updates ...${Color_Off}\t\t\t\t\t\t\t\t<${Yellow}";
+	echo " ";
+    echo "${Color_Off}>\t ${On_Blue}Installing Updates ...${Color_Off}\t\t\t\t\t\t\t\t<${Yellow}";
 	apt dist-upgrade -y --fix-missing
 	echo "${Green}${I_OK}\t Updated.\t\t\t\t\t\t\t\t\t${I_OK}";
-        echo "${Color_Off}>\t ${On_Blue}Uninstalling outdated programs ...${Color_Off}\t\t\t\t\t\t<${Yellow}";
+    echo " ";
+    echo "${Color_Off}>\t ${On_Blue}Uninstalling outdated programs ...${Color_Off}\t\t\t\t\t\t<${Yellow}";
 	apt --purge autoremove -y
 	echo "${Green}${I_OK}\t Uninstalling.\t\t\t\t\t\t\t\t\t${I_OK}";
-        echo "${Color_Off}>\t ${On_Blue}Cleaning ...${Color_Off}\t\t\t\t\t\t\t\t\t<${Yellow}";
+    echo " ";
+    echo "${Color_Off}>\t ${On_Blue}Cleaning ...${Color_Off}\t\t\t\t\t\t\t\t\t<${Yellow}";
 	apt autoclean -y
-	echo "${Green}${I_OK}\t Cleaned. \t\t\t\t\t\t\t\t\t${I_OK}";
+	echo "${Green}${I_OK}\t Cleaned. \t\t\t\t\t\t\t\t\t${I_OK}${Color_Off}";
 	dates=$(date +'%d.%m.%Y %H:%M')
-        echo ">\t${Blue} updated system:\t\t\t\t ${Cyan}${dates}.${Color_Off}\t\t<";
+    echo " ";
+    echo ">\t${Blue} updated system:\t\t\t\t ${Cyan}${dates}.${Color_Off}\t\t<";
 fi

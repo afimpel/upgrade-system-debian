@@ -3,16 +3,21 @@
 UUID=$(id -u)
 UUID=$(( UUID + 0 ))
 I_OK="✔"
-I_KO="X"
+I_KO="✖️"
+Color_Off='\033[0m'       # Text Reset
+Red='\033[0;31m'          # Red
+Blue='\033[0;34m'         # Blue
+IPurple='\033[0;95m'      # Purple
+
 
 
 NC='\e[0m'
 if [ $UUID != 0 ]; then
-        echo "${I_KO}    Start the Script as 'root' for it to work properly    ${I_KO}";
-        exit 1;
+	echo "${I_KO}\t${Red}Start the Script as ${Blue}root${Red} for it to work properly${Color_Off}\t${I_KO}";
+	exit 1;
 else
         sh /usr/bin/upgrade-system;
-        echo "${I_OK}    reboot ...                                                                  ${I_OK}";
+	echo "${IPurple}${I_OK}\t Reboot ... \t\t\t\t\t\t\t\t\t${I_OK}${Color_Off}";
         sleep 3s;
         systemctl reboot;
 fi
