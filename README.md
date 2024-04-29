@@ -5,39 +5,39 @@ Upgrade to Debian Linux
 ### version Git.
 
 ‼️ All as root or with root permissions. ‼️
- * ```git clone https://github.com/afimpel/upgrade-system-debian.git ```
- * ```cd upgrade-system-debian/ ```
- * ```cp upgrade-* /usr/bin/ ```
- * ```chmod 777 /usr/bin/upgrade-system* -R ```
-
-### Run
-#### ROOT user.
-
- * **Run:** ```upgrade-system ```
- * **Run:** ```upgrade-system-poweroff ```
- * **Run:** ```upgrade-system-reboot ```
-
+```sh
+git clone https://github.com/afimpel/upgrade-system-debian.git 
+cd upgrade-system-debian/ 
+cp upgrade-* /usr/bin/ 
+chmod 777 /usr/bin/upgrade-system* -R
+```
 ----
 
 ### Version one link.
 
 ‼️ All as root or with root permissions. ‼️
- * ```wget  -O - https://raw.githubusercontent.com/afimpel/upgrade-system-debian/main/installer.sh | sh ```
+ ```sh
+ wget  -O - https://raw.githubusercontent.com/afimpel/upgrade-system-debian/main/installer.sh | sh 
+ ```
 
 ----
 
 ### Run
 #### ROOT user.
 
- * **Run:** ```upgrade-system ```
- * **Run:** ```upgrade-system-poweroff ```
- * **Run:** ```upgrade-system-reboot ```
+```sh
+upgrade-system 
+upgrade-system-poweroff 
+upgrade-system-reboot 
+```
 
 #### Sudo User.
 
- * **Run:** ```sudo upgrade-system ```
- * **Run:** ```sudo upgrade-system-poweroff ```
- * **Run:** ```sudo upgrade-system-reboot ```
+```sh
+sudo upgrade-system 
+sudo upgrade-system-poweroff 
+sudo upgrade-system-reboot
+```
 
 ----
 
@@ -45,4 +45,6 @@ Upgrade to Debian Linux
 ### Version one link.
 
 ‼️ All as root or with root permissions. ‼️
- * ```wget  -O - https://raw.githubusercontent.com/afimpel/upgrade-system-debian/main/installer-desktop.sh | sh ```
+```sh
+wget  -O - https://raw.githubusercontent.com/afimpel/upgrade-system-debian/main/installer-desktop.sh | sh 
+```
