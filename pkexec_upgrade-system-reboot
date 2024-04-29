@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ ! -f ~/upgrade-system ]; then
+    date > ~/upgrade-system
+    echo 'Updating everything ... '
+    /usr/bin/x-terminal-emulator -e 'sudo upgrade-system'
+    sleep 6s
+    echo 'Rebooting ... '
+    rm ~/upgrade-system
+    sudo reboot
+fi
