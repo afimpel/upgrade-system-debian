@@ -1,10 +1,18 @@
 #!/bin/bash
-echo "LOGNAME: ${LOGNAME}"
+userBase=${LOGNAME}
+
+if [ "$LOGNAME" == "root" ]; then
+    userBase=${SUDO_USER}
+fi
+
+echo "LOGNAME: ${userBase}"
+
 URLgithub="https://raw.githubusercontent.com/afimpel/upgrade-system-debian"
 apt-get install sudo -y
 echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/wheel
 echo "%wheel ALL=(ALL) NOPASSWD: /sbin/poweroff, /sbin/reboot, /sbin/shutdown, /usr/bin/upgrade-syste*" >> /etc/sudoers.d/wheel
-adduser $LOGNAME wheel
+addgroup wheel
+adduser $userBase wheel
 wget --no-cache -O /usr/bin/upgrade-system ${URLgithub}/main/upgrade-system
 wget --no-cache -O /usr/bin/upgrade-system-poweroff ${URLgithub}/main/upgrade-system-poweroff
 wget --no-cache -O /usr/bin/upgrade-system-reboot ${URLgithub}/main/upgrade-system-reboot

@@ -17,7 +17,7 @@ chmod 777 /usr/bin/upgrade-system* -R
 
 ‼️ All as root or with root permissions. ‼️
  ```sh
- wget --no-cache -O - https://raw.githubusercontent.com/afimpel/upgrade-system-debian/main/installer.sh | sh 
+ wget --no-cache -O - https://raw.githubusercontent.com/afimpel/upgrade-system-debian/main/installer.sh | bash 
  ```
 
 ----

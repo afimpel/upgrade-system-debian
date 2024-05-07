@@ -1,7 +1,7 @@
 #!/bin/bash
 URLgithub="https://raw.githubusercontent.com/afimpel/upgrade-system-debian"
 
-wget --no-cache -O - ${URLgithub}/main/installer.sh | sh
+wget --no-cache -O - ${URLgithub}/main/installer.sh | bash
 
 mkdir -p /usr/share/pixmaps/
 mkdir -p /usr/share/applications/
