@@ -4,7 +4,7 @@ Upgrade to Debian Linux
 ## terminal version
 ### version Git.
 
-‼️ All as root or with root permissions. ‼️
+‼️ All as root. ‼️
 ```sh
 git clone https://github.com/afimpel/upgrade-system-debian.git 
 cd upgrade-system-debian/ 
@@ -15,9 +15,9 @@ chmod 777 /usr/bin/upgrade-system* -R
 
 ### Version one link.
 
-‼️ All as root or with root permissions. ‼️
+‼️ user with root permissions (sudo). ‼️
  ```sh
- wget --no-cache -O - https://raw.githubusercontent.com/afimpel/upgrade-system-debian/main/installer.sh | bash 
+ wget --no-cache -O - https://raw.githubusercontent.com/afimpel/upgrade-system-debian/main/installer.sh | sudo sh 
  ```
 
 ----
@@ -44,7 +44,7 @@ sudo upgrade-system-reboot
 ## Desktop
 ### Version one link.
 
-‼️ All as root or with root permissions. ‼️
+‼️ user with root permissions (sudo). ‼️
 ```sh
-wget --no-cache -O - https://raw.githubusercontent.com/afimpel/upgrade-system-debian/main/installer-desktop.sh | sh 
+wget --no-cache -O - https://raw.githubusercontent.com/afimpel/upgrade-system-debian/main/installer-desktop.sh | sudo sh 
 ```
