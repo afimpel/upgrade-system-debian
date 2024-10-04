@@ -11,7 +11,8 @@ if [ $UUID != 0 ]; then
         echo "${I_KO}    Start the Script as 'root' for it to work properly    ${I_KO}";
         exit 1;
 else
-    packageUpdate0=$(apt update && apt list --upgradable 2> /dev/null | grep -c upgradable)
+    apt update
+    packageUpdate0=$(apt list --upgradable 2> /dev/null | grep -c upgradable)
     packageUpdate=$((( $packageUpdate0 * 1 ) - 1))
     echo -e "Upadate : \t\t ${packageUpdate} packages";
 fi
