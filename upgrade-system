@@ -131,6 +131,7 @@ if [ $UUID != 0 ]; then
 	CUSTOM $Red "Start the Script as ROOT for it to work properly" $IRed "${USER^^}" $BIRed "✘" "." "✘" 0
 	exit 1;
 else
+    /usr/bin/package-update
 	R1 $IBlue "Deleting ..." $BWhite '▶' "."
 	rm /var/lib/dpkg/lock -v
 	dpkg --configure -a
