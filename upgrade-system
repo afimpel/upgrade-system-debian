@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Reset
 Color_Off='\033[0m'       # Text Reset
 
@@ -77,37 +77,89 @@ I_OK="✔"
 I_KO="✖️"
 
 NC='\e[0m'
+
+
+R1 () {
+    data=$(completeLine "$2" "$5" 1);
+    printf " ${3}$4 ${NC}$1 $data ${3}$4${NC}\n${NC}"
+}
+
+CUSTOM () {
+    data=$(completeLine "$2" "$7" 3 "$4" $9);
+    printf " ${5}$6 ${NC}$1 $2$3 $data ${5}$8${NC}\n${NC}"
+}
+
+L1 () {
+    data=$(completeLine "$2" "$5" 2);
+    printf " ${3}$4 ${NC}$1 $data ${3}$4${NC}\n${NC}"
+}
+
+completeLine() {
+    if [ "$3" == '3' ]; then
+        menos=$(( 11 + $5 ))
+    else
+        menos=10
+    fi
+
+    local input_string="$1$4"
+    local input_string0="$1"
+    local input_string1="$4"
+    local total_length=$(tput cols)-$menos
+    local input_length=${#input_string}
+    local num_dots=$((total_length - input_length))
+
+    if [ $num_dots -lt 0 ]; then
+        num_dots=1
+    fi
+
+    local output_string=""
+    for ((i=0; i<num_dots; i++)); do
+        output_string+="$2"
+    done
+    if [ "$3" == '3' ]; then
+        echo "$output_string $input_string1"
+    elif [ "$3" == '0' ]; then
+        echo "$input_string0 $output_string $input_string1"
+    elif [ "$3" == '1' ]; then
+        echo "$input_string $output_string"
+    else
+        echo "$output_string $input_string"
+    fi
+}
+
 if [ $UUID != 0 ]; then
-	echo "${I_KO}\t${Red}Start the Script as ${Blue}root${Red} for it to work properly${Color_Off}\t${I_KO}";
+	CUSTOM $Red "Start the Script as ROOT for it to work properly" $IRed "${USER^^}" $BIRed "✘" "." "✘" 0
 	exit 1;
 else
+	R1 $IBlue "Deleting ..." $BWhite '▶' "."
 	rm /var/lib/dpkg/lock -v
 	dpkg --configure -a
-	rm  /var/cache/apt/archives/*
-	rm  /var/lib/apt/lists/*
-    echo " ";
-    echo "${Color_Off}>\t ${On_Blue}Cleaning ...${Color_Off}\t\t\t\t\t\t\t\t\t<${Yellow}";
+	rm -v /var/cache/apt/archives/*
+	rm -v  /var/lib/apt/lists/*
+	echo " ";
+    clear
+	R1 $IBlue "Cleaning" $BWhite '▶' "."
 	apt autoclean -y
-	echo "${Green}${I_OK}\t Cleaned. \t\t\t\t\t\t\t\t\t${I_OK}";
+	R1 $IGreen "Cleaned" $BWhite '✔' "."
     echo " ";
-    echo "${Color_Off}>\t ${On_Blue}Updating source.list${Color_Off}\t\t\t\t\t\t\t\t<${Yellow}";
+	R1 $IBlue "Updating source.list" $BWhite '▶' "."
 	apt update -y
-	echo "${Green}${I_OK}\t source.list\t\t\t\t\t\t\t\t\t${I_OK}";
+	R1 $IBlue "source.list" $BWhite '▶' "."
 	echo " ";
 	apt list --upgradable -a
 	echo " ";
-    echo "${Color_Off}>\t ${On_Blue}Installing Updates ...${Color_Off}\t\t\t\t\t\t\t\t<${Yellow}";
+	R1 $IBlue "Installing Updates" $BWhite '▶' "."
 	apt dist-upgrade -y --fix-missing
-	echo "${Green}${I_OK}\t Updated.\t\t\t\t\t\t\t\t\t${I_OK}";
+	R1 $IGreen "Updated" $BWhite '✔' "."
     echo " ";
-    echo "${Color_Off}>\t ${On_Blue}Uninstalling outdated programs ...${Color_Off}\t\t\t\t\t\t<${Yellow}";
+	R1 $IBlue "Uninstalling outdated programs" $BWhite '▶' "."
 	apt --purge autoremove -y
-	echo "${Green}${I_OK}\t Uninstalling.\t\t\t\t\t\t\t\t\t${I_OK}";
+	R1 $IGreen "Uninstalling" $BWhite '✔' "."
     echo " ";
-    echo "${Color_Off}>\t ${On_Blue}Cleaning ...${Color_Off}\t\t\t\t\t\t\t\t\t<${Yellow}";
+	R1 $IBlue "Cleaning" $BWhite '▶' "."
 	apt autoclean -y
-	echo "${Green}${I_OK}\t Cleaned. \t\t\t\t\t\t\t\t\t${I_OK}${Color_Off}";
-	dates=$(date +'%d.%m.%Y %H:%M')
+	R1 $IGreen "Cleaned" $BWhite '✔' "."
     echo " ";
-    echo ">\t${Blue} updated system:\t\t\t\t ${Cyan}${dates}.${Color_Off}\t\t<";
+	dates=$(date +'%Y-%m-%d %H:%M')
+	CUSTOM $IYellow "Updated system:" $IGreen "$dates" $BWhite "✔" "." "✔" 0
 fi

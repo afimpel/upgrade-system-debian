@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Reset
 UUID=$(id -u)
 UUID=$(( UUID + 0 ))
@@ -9,9 +9,17 @@ if [ $UUID != 0 ]; then
     echo "${I_KO}    Start the Script as 'root' for it to work properly    ${I_KO}";
     exit 1;
 else
+    userBase=${LOGNAME}
+
+    if [ "$LOGNAME" == "root" ]; then
+        userBase=${SUDO_USER}
+    fi
+
+    CUSTOM $Yellow "Launched" $IYellow "${userBase}" $BIYellow "▶" "." "▶" 0
+
     URLgithub="https://raw.githubusercontent.com/afimpel/upgrade-system-debian"
 
-    wget --no-cache -O - ${URLgithub}/main/installer.sh | sh
+    wget --no-cache -O - ${URLgithub}/main/installer.sh | bash
 
     mkdir -p /usr/share/pixmaps/
     mkdir -p /usr/share/applications/
@@ -28,7 +36,11 @@ else
     wget --no-cache -O /usr/share/pixmaps/shutdown.png ${URLgithub}/main/Desktop/shutdown.png
     wget --no-cache -O /usr/share/pixmaps/reboot.png ${URLgithub}/main/Desktop/reboot.png
 
-    chmod 777 /usr/share/applications/pkexec_*
-    chmod 777 /usr/share/pixmaps/* -R
-    chmod 777 /usr/bin/pkexec_upgrad* -R
+    chmod 777 -v /usr/share/applications/pkexec_*
+    chmod 777 -v /usr/share/pixmaps/* -R
+    chmod 777 -v /usr/bin/pkexec_upgrad* -R
+
+    echo " ";
+	dates=$(date +'%Y-%m-%d %H:%M')
+	CUSTOM $Green "Installation completed" $IGreen "$dates" $BWhite "✔" "." "✔" 0
 fi

@@ -2,6 +2,10 @@
 if [ ! -f ~/upgrade-system ]; then
 	date > ~/upgrade-system
 	echo 'Updating everything ... '
-	/usr/bin/x-terminal-emulator -e 'sudo upgrade-system'
+	if ! [ -x "$(command -v xterm)" ]; then
+		/usr/bin/x-terminal-emulator -e 'sudo upgrade-system'
+	else
+		/usr/bin/xterm -geometry 140x30 -fa 'Monospace' -fs 18 -e 'sudo upgrade-system'
+    fi
     rm ~/upgrade-system
 fi
