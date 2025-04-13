@@ -133,7 +133,7 @@ if [ $UUID != 0 ]; then
 else
         bash /usr/bin/upgrade-system;
         echo " ";
-	R1 $IGreen "Poweroff" $BWhite '✔' "."
+	    R1 $IGreen "Poweroff" $BWhite '✔' "."
         sleep 3s;
         systemctl poweroff;
 fi
