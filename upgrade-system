@@ -199,5 +199,5 @@ else
 	R1 $IGreen "Cleaned" $BWhite '✔' "." "$@"
     echo " ";
 	dates=$(date +'%Y-%m-%d %H:%M')
-	CUSTOM $IYellow "Updated system:" $IGreen "$dates" $BWhite "✔" "." "✔" 0 "$@"
+	CUSTOM $IYellow "Updated system" $IGreen "$dates" $BWhite "✔" "." "✔" 0 "$@"
 fi
