@@ -171,8 +171,6 @@ else
 	R1 $IBlue "Deleting ..." $BWhite '▶' "." "$@"
 	rm /var/lib/dpkg/lock -v
 	dpkg --configure -a
-	rm -v /var/cache/apt/archives/*
-	rm -v  /var/lib/apt/lists/*
 	echo " ";
     clear
     /usr/bin/package-update "$@"
