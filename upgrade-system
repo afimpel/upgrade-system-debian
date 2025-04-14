@@ -183,7 +183,7 @@ else
     echo " ";
 	R1 $IBlue "Updating source.list" $BWhite '▶' "." "$@"
 	apt update -y
-	R1 $IBlue "source.list" $BWhite '▶' "."
+	R1 $IBlue "source.list" $BWhite '▶' "." "$@"
 	apt list --upgradable -a
 	echo " ";
 	R1 $IBlue "Installing Updates" $BWhite '▶' "." "$@"
