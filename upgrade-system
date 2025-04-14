@@ -168,8 +168,6 @@ if [ $UUID != 0 ]; then
 	CUSTOM $Red "Start the Script as ROOT for it to work properly" $IRed "${USER^^}" $BIRed "✘" "." "✘" 0 "$@"
 	exit 1;
 else
-    /usr/bin/package-update "$@"
-    echo " ";
 	R1 $IBlue "Deleting ..." $BWhite '▶' "." "$@"
 	rm /var/lib/dpkg/lock -v
 	dpkg --configure -a
@@ -177,6 +175,8 @@ else
 	rm -v  /var/lib/apt/lists/*
 	echo " ";
     clear
+    /usr/bin/package-update "$@"
+    echo " ";
 	R1 $IBlue "Cleaning" $BWhite '▶' "." "$@"
 	apt autoclean -y
 	R1 $IGreen "Cleaned" $BWhite '✔' "." "$@"
