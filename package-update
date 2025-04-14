@@ -167,12 +167,11 @@ if [ $UUID != 0 ]; then
     CUSTOM $Red "Start the Script as ROOT for it to work properly" $IRed "${USER^^}" $BIRed "✘" "." "✘" 0 "$@"
     exit 1;
 else
-	nohup rm /var/lib/dpkg/lock -v
-	nohup rm -v /var/cache/apt/archives/*
-	nohup rm -v  /var/lib/apt/lists/*
-    nohup apt update
+	nohup rm /var/lib/dpkg/lock -v >/dev/null 2>&1
+	nohup rm -v /var/cache/apt/archives/* >/dev/null 2>&1
+	nohup rm -v  /var/lib/apt/lists/* >/dev/null 2>&1
+    nohup apt update >/dev/null 2>&1
     packageUpdate0=$(apt-get -s -o Debug::NoLocking=true upgrade | grep -c ^Inst)
-    packageUpdate=$((( $packageUpdate0 * 1 ) - 1))
+    packageUpdate=$((( $packageUpdate0 * 1 )))
     CUSTOM $Green "Upadate" $IGreen "${packageUpdate} packages" $BIGreen "▶" "." "▶" 0 "$@"
-    rm *.out
 fi
