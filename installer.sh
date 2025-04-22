@@ -142,7 +142,7 @@ else
     URLgithub="https://raw.githubusercontent.com/afimpel/upgrade-system-debian"
     apt-get install sudo xterm wget curl -y
     echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/wheel
-    echo "%wheel ALL=(ALL) NOPASSWD: /sbin/poweroff, /sbin/reboot, /sbin/shutdown, /usr/bin/upgrade-syste*, /usr/bin/package-update" >> /etc/sudoers.d/wheel
+    echo "%wheel ALL=(ALL) NOPASSWD: /sbin/poweroff, /sbin/reboot, /sbin/shutdown, /usr/bin/upgrade-*, /usr/bin/package-update" >> /etc/sudoers.d/wheel
     addgroup wheel
     adduser $userBase wheel
     wget --no-cache -O /usr/bin/package-update ${URLgithub}/main/package-update
