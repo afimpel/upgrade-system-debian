@@ -2,10 +2,16 @@
 if [ ! -f ~/upgrade-system ]; then
 	date > ~/upgrade-system
 	echo 'Updating everything ... '
+	if [ -x "$(command -v notify-send)" ]; then
+		/usr/bin/notify-send "Updating everything ... " -i upgrade -t 5000 > /dev/null 2>&1
+	fi
+
 	if ! [ -x "$(command -v xterm)" ]; then
 		/usr/bin/x-terminal-emulator -e 'sudo upgrade-system'
 	else
-		/usr/bin/xterm -geometry 140x30 -fa 'Monospace' -fs 18 -e 'sudo upgrade-system'
+		packageUpdate0="Updating everything ... "
+        /usr/bin/xterm -fa 'Monospace' -title "$packageUpdate0" -fs 24 -e 'sleep 2s; wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz;sudo upgrade-system'
     fi
+
     rm ~/upgrade-system
 fi
