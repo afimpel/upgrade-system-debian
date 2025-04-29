@@ -197,7 +197,7 @@ else
     chmod 777 -v /usr/share/applications/pkexec_*
     chmod 777 -v /usr/share/pixmaps/* -R
     chmod 777 -v /usr/bin/pkexec_upgrad* -R
-    sudo apt install xdotool -y
+    sudo apt install xdotool wmctrl -y
 
     echo " ";
 	dates=$(date +'%Y-%m-%d %H:%M')
