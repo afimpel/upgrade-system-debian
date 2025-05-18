@@ -178,4 +178,5 @@ else
     packageUpdate0=$(apt-get -s -o Debug::NoLocking=true upgrade | grep -c ^Inst)
     packageUpdate=$((( $packageUpdate0 * 1 )))
     CUSTOM $Green "Upadate" $IGreen "${packageUpdate} packages" $BIGreen "▶" "." "▶" 0 "$@"
+    nohup chmod 777 /var/log/package.log >/dev/null 2>&1
 fi
