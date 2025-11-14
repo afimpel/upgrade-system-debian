@@ -140,7 +140,7 @@ else
     CUSTOM $Yellow "Launched" $IYellow "${userBase}" $BIYellow "▶" "." "▶" 0
 
     URLgithub="https://raw.githubusercontent.com/afimpel/upgrade-system-debian"
-    apt-get install sudo xterm wget curl -y
+    apt-get install sudo wget curl -y
     echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/wheel
     echo "%wheel ALL=(ALL) NOPASSWD: /sbin/poweroff, /sbin/reboot, /sbin/shutdown, /usr/bin/upgrade-*, /usr/bin/package-update" >> /etc/sudoers.d/wheel
     addgroup wheel
