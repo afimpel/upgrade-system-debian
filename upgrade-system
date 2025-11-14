@@ -187,7 +187,7 @@ else
 	apt update -y
 	echo " ";
 	R1 $IBlue "source.list" $BWhite '▶' "." "$@"
-	apt list --upgradable -a
+	apt list --upgradable -a | grep upgradable
 	echo " ";
 	R1 $IBlue "Installing Updates" $BWhite '▶' "." "$@"
 	apt dist-upgrade -y --fix-missing
